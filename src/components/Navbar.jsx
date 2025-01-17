@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
+import MobileMenu from '../components/MobileMenu';
 
 const Nav = styled(motion.nav)`
   position: fixed;
@@ -43,8 +44,48 @@ const NavLink = styled(Link)`
   }
 `;
 
+const HamburgerButton = styled.button`
+  display: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 10px;
+  z-index: 99;
+
+  @media (max-width: ${props => props.theme.breakpoints.md}) {
+    display: block;
+  }
+`;
+
+const HamburgerIcon = styled.div`
+  width: 24px;
+  height: 2px;
+  background: ${props => props.isOpen ? 'transparent' : props.theme.colors.white};
+  position: relative;
+  transition: all 0.3s ease;
+
+  &::before,
+  &::after {
+    content: '';
+    position: absolute;
+    width: 24px;
+    height: 2px;
+    background: ${props => props.theme.colors.white};
+    transition: all 0.3s ease;
+  }
+
+  &::before {
+    transform: ${props => props.isOpen ? 'rotate(45deg)' : 'translateY(-8px)'};
+  }
+
+  &::after {
+    transform: ${props => props.isOpen ? 'rotate(-45deg)' : 'translateY(8px)'};
+  }
+`;
+
 const Navbar = () => {
   const [scroll, setScroll] = useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -55,22 +96,34 @@ const Navbar = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  const toggleMenu = () => {
+    setIsMenuOpen(!isMenuOpen);
+    // Prevent scrolling when menu is open
+    document.body.style.overflow = !isMenuOpen ? 'hidden' : 'unset';
+  };
+
   return (
-    <Nav
-      initial={{ y: -100 }}
-      animate={{ y: 0 }}
-      transition={{ duration: 0.5 }}
-      style={{
-        boxShadow: scroll ? '0 10px 30px -10px rgba(2,12,27,0.7)' : 'none',
-      }}
-    >
-      <Logo to="/">JF</Logo>
-      <NavLinks>
-        <NavLink to="/about">About</NavLink>
-        <NavLink to="/projects">Projects</NavLink>
-        <NavLink to="/contact">Contact</NavLink>
-      </NavLinks>
-    </Nav>
+    <>
+      <Nav
+        initial={{ y: -100 }}
+        animate={{ y: 0 }}
+        transition={{ duration: 0.5 }}
+        style={{
+          boxShadow: scroll ? '0 10px 30px -10px rgba(2,12,27,0.7)' : 'none',
+        }}
+      >
+        <Logo to="/">JD</Logo>
+        <NavLinks>
+          <NavLink to="/about">About</NavLink>
+          <NavLink to="/projects">Projects</NavLink>
+          <NavLink to="/contact">Contact</NavLink>
+        </NavLinks>
+        <HamburgerButton onClick={toggleMenu}>
+          <HamburgerIcon isOpen={isMenuOpen} />
+        </HamburgerButton>
+      </Nav>
+      <MobileMenu isOpen={isMenuOpen} toggleMenu={toggleMenu} />
+    </>
   );
 };
 

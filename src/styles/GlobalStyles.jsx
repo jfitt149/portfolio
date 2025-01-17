@@ -14,6 +14,12 @@ export const GlobalStyles = createGlobalStyle`
     line-height: 1.6;
   }
 
+  body {
+    &.menu-open {
+      overflow: hidden;
+    }
+  }
+
   a {
     text-decoration: none;
     color: inherit;
