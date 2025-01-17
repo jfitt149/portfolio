@@ -81,7 +81,7 @@ const Home = () => {
           Currently, I'm focused on building accessible, human-centered products.
         </Description>
       </Introduction>
-      <ProfileImage src="/src/assets/JustinFitt.jpg" alt="Justin Fitt"></ProfileImage>
+      <ProfileImage src="/public/JustinFitt.jpg" alt="Justin Fitt"></ProfileImage>
     </HomeContainer>
   );
 };

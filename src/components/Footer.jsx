@@ -46,7 +46,7 @@ const Footer = () => {
         </SocialIcon>
       </SocialLinks>
       <Copyright>
-        © 2023 John Doe. All rights reserved.
+        © 2025 Justin Fitt. All rights reserved.
       </Copyright>
     </FooterContainer>
   );
