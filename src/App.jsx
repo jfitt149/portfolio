@@ -1,39 +1,32 @@
 // src/App.js
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import GlobalStyle from './GlobalStyles';
+import { ThemeProvider } from 'styled-components';
+import { GlobalStyles } from './styles/GlobalStyles';
+import { theme } from './styles/theme';
 import Navbar from './components/Navbar';
+import Home from './components/Home';
+import About from './components/About';
+import Projects from './components/Projects';
+import Contact from './components/Contact';
 import Footer from './components/Footer';
-
-// Pages
-import Home from './pages/Home';
-import About from './pages/About';
-import Projects from './pages/Projects';
-import Contact from './pages/Contact';
-
-// Styled Components
-import styled from 'styled-components';
 
 function App() {
   return (
-    <Router>
-      <GlobalStyle />
-      <Navbar />
-      <MainContent>
+    <ThemeProvider theme={theme}>
+      <GlobalStyles />
+      <Router>
+        <Navbar />
         <Routes>
-          <Route path="/" element={<Home />} exact />
+          <Route path="/" element={<Home />} />
           <Route path="/about" element={<About />} />
           <Route path="/projects" element={<Projects />} />
           <Route path="/contact" element={<Contact />} />
         </Routes>
-      </MainContent>
-      <Footer />
-    </Router>
+        <Footer />
+      </Router>
+    </ThemeProvider>
   );
 }
 
 export default App;
-
-const MainContent = styled.main`
-  min-height: calc(100vh - 80px - 80px); /* Adjusting for navbar and footer height */
-`;

@@ -1,103 +1,77 @@
-// src/components/Navbar.js
-import React, { useState } from 'react';
+// src/components/Navbar/index.js
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
+import { motion } from 'framer-motion';
+
+const Nav = styled(motion.nav)`
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: 70px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 50px;
+  background: rgba(10, 25, 47, 0.85);
+  backdrop-filter: blur(10px);
+  z-index: 100;
+`;
+
+const Logo = styled(Link)`
+  font-size: 24px;
+  font-weight: bold;
+  color: ${props => props.theme.colors.secondary};
+`;
+
+const NavLinks = styled.div`
+  display: flex;
+  gap: 30px;
+
+  @media (max-width: ${props => props.theme.breakpoints.md}) {
+    display: none;
+  }
+`;
+
+const NavLink = styled(Link)`
+  color: ${props => props.theme.colors.white};
+  font-size: 16px;
+  transition: color 0.3s ease;
+
+  &:hover {
+    color: ${props => props.theme.colors.secondary};
+  }
+`;
 
 const Navbar = () => {
-  const [isOpen, setIsOpen] = useState(false);
+  const [scroll, setScroll] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setScroll(window.scrollY > 50);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   return (
-    <Nav>
-      <Container>
-        <Logo><Link to="/">MyPortfolio</Link></Logo>
-        <Hamburger onClick={() => setIsOpen(!isOpen)}>
-          <span />
-          <span />
-          <span />
-        </Hamburger>
-        <Menu isOpen={isOpen}>
-          <MenuLink to="/about" onClick={() => setIsOpen(false)}>About</MenuLink>
-          <MenuLink to="/projects" onClick={() => setIsOpen(false)}>Projects</MenuLink>
-          <MenuLink to="/contact" onClick={() => setIsOpen(false)}>Contact</MenuLink>
-        </Menu>
-      </Container>
+    <Nav
+      initial={{ y: -100 }}
+      animate={{ y: 0 }}
+      transition={{ duration: 0.5 }}
+      style={{
+        boxShadow: scroll ? '0 10px 30px -10px rgba(2,12,27,0.7)' : 'none',
+      }}
+    >
+      <Logo to="/">JF</Logo>
+      <NavLinks>
+        <NavLink to="/about">About</NavLink>
+        <NavLink to="/projects">Projects</NavLink>
+        <NavLink to="/contact">Contact</NavLink>
+      </NavLinks>
     </Nav>
   );
 };
 
 export default Navbar;
-
-// Styled Components
-const Nav = styled.nav`
-  background: #333;
-  color: #fff;
-  padding: 0.5rem 0;
-  position: sticky;
-  top: 0;
-  z-index: 999;
-`;
-
-const Container = styled.div`
-  max-width: 1100px;
-  margin: 0 auto;
-  padding: 0 2rem;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-`;
-
-const Logo = styled.h1`
-  a {
-    color: #fff;
-    text-decoration: none;
-  }
-`;
-
-const Hamburger = styled.div`
-  display: none;
-  flex-direction: column;
-  cursor: pointer;
-  
-  span {
-    height: 3px;
-    width: 25px;
-    background: #fff;
-    margin-bottom: 4px;
-    border-radius: 5px;
-  }
-
-  @media (max-width: 768px) {
-    display: flex;
-  }
-`;
-
-const Menu = styled.div`
-  display: flex;
-  align-items: center;
-  
-  @media (max-width: 768px) {
-    overflow: hidden;
-    flex-direction: column;
-    max-height: ${({ isOpen }) => (isOpen ? '300px' : '0')};
-    transition: max-height 0.3s ease-in;
-    width: 100%;
-    background: #333;
-  }
-`;
-
-const MenuLink = styled(Link)`
-  padding: 1rem 2rem;
-  cursor: pointer;
-  text-align: center;
-  color: #fff;
-  text-decoration: none;
-  
-  &:hover {
-    color: #e91e63;
-  }
-
-  @media (max-width: 768px) {
-    padding: 0.5rem 0;
-    width: 100%;
-  }
-`;
