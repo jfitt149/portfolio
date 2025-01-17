@@ -67,7 +67,7 @@ const ProfileImage = styled.img`
   border: 5px solid ${props => props.theme.colors.secondary};
 
     @media (max-width: ${props => props.theme.breakpoints.md}) {
-        top: 28%;
+        top: 30%;
         left: 35%;
     }
 `;
