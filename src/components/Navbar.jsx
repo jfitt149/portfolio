@@ -112,7 +112,7 @@ const Navbar = () => {
           boxShadow: scroll ? '0 10px 30px -10px rgba(2,12,27,0.7)' : 'none',
         }}
       >
-        <Logo to="/">JD</Logo>
+        <Logo to="/">JF</Logo>
         <NavLinks>
           <NavLink to="/about">About</NavLink>
           <NavLink to="/projects">Projects</NavLink>

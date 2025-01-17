@@ -46,6 +46,8 @@ const Tagline = styled.h3`
 
   @media (max-width: ${props => props.theme.breakpoints.md}) {
     font-size: 40px;
+    max-width: 100%;
+    padding-top: 25vw;
   }
 `;
 
@@ -63,6 +65,11 @@ const ProfileImage = styled.img`
   object-fit: cover;
   border-radius: 50%;
   border: 5px solid ${props => props.theme.colors.secondary};
+
+    @media (max-width: ${props => props.theme.breakpoints.md}) {
+        top: 28%;
+        left: 35%;
+    }
 `;
 
 const Home = () => {
