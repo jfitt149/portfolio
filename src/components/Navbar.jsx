@@ -60,7 +60,7 @@ const HamburgerButton = styled.button`
 const HamburgerIcon = styled.div`
   width: 24px;
   height: 2px;
-  background: ${props => props.isOpen ? 'transparent' : props.theme.colors.white};
+  background: ${props => props.isOpen ? 'transparent' : props.theme.colors.secondary};
   position: relative;
   transition: all 0.3s ease;
 
