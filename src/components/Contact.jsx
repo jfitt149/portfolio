@@ -1,7 +1,8 @@
 // src/components/Contact/index.js
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
+import emailjs from '@emailjs/browser';
 
 const ContactSection = styled.section`
   padding: 100px 150px;
@@ -70,26 +71,69 @@ const SubmitButton = styled.button`
   &:hover {
     background: rgba(100, 255, 218, 0.1);
   }
+
+  &:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+  }
+`;
+
+const StatusMessage = styled(motion.div)`
+  margin-top: 20px;
+  padding: 10px 20px;
+  border-radius: 4px;
+  text-align: center;
+  
+  ${props => props.$type === 'success' && `
+    background: rgba(100, 255, 218, 0.1);
+    color: ${props.theme.colors.secondary};
+  `}
+  
+  ${props => props.$type === 'error' && `
+    background: rgba(255, 100, 100, 0.1);
+    color: #ff6464;
+  `}
 `;
 
 const Contact = () => {
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    message: ''
-  });
+  const form = useRef();
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [status, setStatus] = useState({ type: '', message: '' });
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Handle form submission here
-    console.log(formData);
-  };
+    setIsSubmitting(true);
+    setStatus({ type: '', message: '' });
+    emailjs.init({
+              publicKey: import.meta.env.VITE_EMAILJS_PUBLIC_KEY,
+            });
 
-  const handleChange = (e) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value
-    });
+    try {
+      console.log(form.current);
+      const result = await emailjs.sendForm(
+        import.meta.env.VITE_EMAILJS_SERVICE_ID,
+        import.meta.env.VITE_EMAILJS_TEMPLATE_ID,
+        form.current,
+        import.meta.env.VITE_EMAILJS_PUBLIC_KEY
+      );
+
+      if (result.text === 'OK') {
+        setStatus({
+          type: 'success',
+          message: 'Thank you! Your message has been sent successfully.'
+        });
+        form.current.reset();
+      }
+    } catch (error) {
+      setStatus({
+        type: 'error',
+        message: 'Oops! Something went wrong. Please try again later.'
+      });
+      console.error("Error sending email:", error);
+
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -101,14 +145,12 @@ const Contact = () => {
       >
         Get In Touch
       </motion.h2>
-      <ContactForm onSubmit={handleSubmit}>
+      <ContactForm ref={form} onSubmit={handleSubmit}>
         <FormGroup>
           <Label>Name</Label>
           <Input
             type="text"
-            name="name"
-            value={formData.name}
-            onChange={handleChange}
+            name="user_name"
             required
           />
         </FormGroup>
@@ -116,9 +158,7 @@ const Contact = () => {
           <Label>Email</Label>
           <Input
             type="email"
-            name="email"
-            value={formData.email}
-            onChange={handleChange}
+            name="user_email"
             required
           />
         </FormGroup>
@@ -126,13 +166,24 @@ const Contact = () => {
           <Label>Message</Label>
           <TextArea
             name="message"
-            value={formData.message}
-            onChange={handleChange}
             required
           />
         </FormGroup>
-        <SubmitButton type="submit">Send Message</SubmitButton>
+        <SubmitButton type="submit" disabled={isSubmitting}>
+          {isSubmitting ? 'Sending...' : 'Send Message'}
+        </SubmitButton>
       </ContactForm>
+
+      {status.message && (
+        <StatusMessage
+          $type={status.type}
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: -20 }}
+        >
+          {status.message}
+        </StatusMessage>
+      )}
     </ContactSection>
   );
 };
