@@ -1,0 +1,4 @@
+-center Justin Fitt
+-make project cards link to live site
+-fix email template
+-update about text
