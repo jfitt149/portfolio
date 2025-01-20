@@ -2,3 +2,4 @@
 -make project cards link to live site
 -fix email template
 -update about text
+-fix react router when you refresh page is gone
