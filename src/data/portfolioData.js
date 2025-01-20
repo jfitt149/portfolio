@@ -3,28 +3,28 @@ export const projects = [
     {
       id: 1,
       title: "Custom Booking Solution",
-      description: "A full-stack e-commerce platform built with React, Node.js, and MongoDB",
-      technologies: ["React", "Node.js", "MongoDB", "Express", "Redux"],
-      githubUrl: "github",
-      liveUrl: "",
-      image: "/assets/project1.jpg"
+      description: "For my BrainStation capstone, I built a full-stack website for Blink Lash and Nail Bar with a custom booking system, showcasing my skills in web development and API integration.",
+      technologies: ["React", "Node.js", "Express", "SCSS"],
+      githubUrl: "https://github.com/jfitt149/justin-fitt-blink_lash_and_nail_bar",
+      liveUrl: "https://blinklashandnailbar.netlify.app/",
+      image: "/blink.jpg"
     },
     {
       id: 2,
       title: "Portfolio Site",
-      description: "Portfolio site built with React.",
+      description: "I developed a responsive portfolio site using React to showcase my projects, skills, and experience. The site features dynamic components, smooth navigation, and a clean, modern design",
       technologies: ["React", "Styled Components", "Framer Motion", "React Router"],
-      githubUrl: "https://github",
-      liveUrl: "",
-      image: "/assets/project2.jpg"
+      githubUrl: "https://github.com/jfitt149/portfolio",
+      liveUrl: "https://justinfitt.ca/",
+      image: "/portfolio_screenshot.png"
     },
     // {
     //   id: 3,
-    //   title: "AI Chat Application",
+    //   title: "MyBrary",
     //   description: "Real-time chat application with AI-powered responses",
     //   technologies: ["React", "Socket.io", "OpenAI API", "Express"],
-    //   githubUrl: "https://github.com/johndoe/ai-chat",
-    //   liveUrl: "https://ai-chat-demo.com",
+    //   githubUrl: "https://github.com/jfitt149/Mybrary",
+    //   liveUrl: "https://mybrary-6zgy.onrender.com/",
     //   image: "/assets/project3.jpg"
     // }
   ];
