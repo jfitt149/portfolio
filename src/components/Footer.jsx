@@ -1,7 +1,7 @@
 // src/components/Footer/index.js
 import React from 'react';
 import styled from 'styled-components';
-import { FiGithub, FiTwitter, FiLinkedin } from 'react-icons/fi';
+import { FiGithub, FiLinkedin } from 'react-icons/fi';
 
 const FooterContainer = styled.footer`
   padding: 30px 50px;
@@ -35,13 +35,10 @@ const Footer = () => {
   return (
     <FooterContainer>
       <SocialLinks>
-        <SocialIcon href="https://github.com" target="_blank" rel="noopener noreferrer">
+        <SocialIcon href="https://github.com/jfitt149" target="_blank" rel="noopener noreferrer">
           <FiGithub />
         </SocialIcon>
-        <SocialIcon href="https://twitter.com" target="_blank" rel="noopener noreferrer">
-          <FiTwitter />
-        </SocialIcon>
-        <SocialIcon href="https://linkedin.com" target="_blank" rel="noopener noreferrer">
+        <SocialIcon href="https://www.linkedin.com/in/justin-fitt/" target="_blank" rel="noopener noreferrer">
           <FiLinkedin />
         </SocialIcon>
       </SocialLinks>
