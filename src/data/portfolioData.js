@@ -18,15 +18,15 @@ export const projects = [
       liveUrl: "https://justinfitt.ca/",
       image: "/portfolio_screenshot.png"
     },
-    // {
-    //   id: 3,
-    //   title: "MyBrary",
-    //   description: "Real-time chat application with AI-powered responses",
-    //   technologies: ["React", "Socket.io", "OpenAI API", "Express"],
-    //   githubUrl: "https://github.com/jfitt149/Mybrary",
-    //   liveUrl: "https://mybrary-6zgy.onrender.com/",
-    //   image: "/assets/project3.jpg"
-    // }
+    {
+      id: 3,
+      title: "MyBrary",
+      description: "An online library management system allowing users to browse, add, and manage books. I built this full-stack web app to practice working with databases, and express servers.",
+      technologies: ["Express", "MongoDB", "Node.js"],
+      githubUrl: "https://github.com/jfitt149/Mybrary",
+      liveUrl: "https://mybrary-6zgy.onrender.com/",
+      image: "/mybrary.jpg"
+    }
   ];
   
   export const skills = [
