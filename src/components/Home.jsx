@@ -51,6 +51,11 @@ const Name = styled.h2`
   @media (max-width: ${props => props.theme.breakpoints.md}) {
     font-size: 60px;
   }
+
+  @media (max-width: ${props => props.theme.breakpoints.sm}) {
+    text-align: center;
+    font-size: 50px;
+  }
 `;
 
 const Tagline = styled.h3`
@@ -61,6 +66,10 @@ const Tagline = styled.h3`
   @media (max-width: ${props => props.theme.breakpoints.md}) {
     font-size: 40px;
     text-align: center;
+  }
+
+  @media (max-width: ${props => props.theme.breakpoints.sm}) {
+  font-size: 30px;
   }
 `;
 

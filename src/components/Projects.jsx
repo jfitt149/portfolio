@@ -32,6 +32,11 @@ const ProjectCard = styled(motion.div)`
   overflow: hidden;
 `;
 
+const ProjectLink = styled.a`
+  text-decoration: none;
+  color: inherit;
+`;
+
 const ProjectImage = styled.img`
   width: 100%;
   height: 200px;
@@ -95,7 +100,9 @@ const Projects = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: index * 0.1 }}
           >
-            <ProjectImage src={project.image} alt={project.title} />
+            <ProjectLink href={project.liveUrl} target="_blank" rel="noopener noreferrer">
+             <ProjectImage src={project.image} alt={project.title} />
+            </ProjectLink>
             <ProjectTitle>{project.title}</ProjectTitle>
             <ProjectDescription>{project.description}</ProjectDescription>
             <TechList>

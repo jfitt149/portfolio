@@ -25,7 +25,7 @@ export const projects = [
       technologies: ["Express", "MongoDB", "Node.js"],
       githubUrl: "https://github.com/jfitt149/Mybrary",
       liveUrl: "https://mybrary-6zgy.onrender.com/",
-      image: "/mybrary.jpg"
+      image: "/mybrary.png"
     }
   ];
   
