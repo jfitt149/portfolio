@@ -66,12 +66,13 @@ const About = () => {
             transition={{ duration: 0.5, delay: 0.2 }}
           >
             <p>
-            With a foundation in mechanical engineering and a passion for problem-solving, I embarked on a journey of exploration and discovery that led me into the dynamic world of software development. My transition from mechanical engineering to software development has been driven by an insatiable curiosity for technology and a desire to make a tangible impact in the digital realm.            </p>
+              With a background in mechanical engineering and a passion for problem-solving, I transitioned into software development to explore technology’s potential and create impactful solutions.</p>
             <p>
-            Throughout my academic and professional career in mechanical engineering, I developed a strong analytical mindset and honed my skills in critical thinking and systematic problem-solving. My experience includes proficiency in Geometric Dimensioning & Tolerancing, Continuous Improvement, and project management, which has equipped me with a robust toolkit for tackling complex challenges.            </p>
-            <p>As I delved deeper into the complexities of engineering projects, I found myself increasingly drawn to the innovative possibilities offered by software solutions. This realization sparked my decision to pivot my career path towards software development, where I have since focused on developing my skills in various programming languages, software development methodologies, and agile practices.</p>
+              My engineering experience sharpened my analytical thinking, critical problem-solving, and project management skills.</p>
             <p>
-              Here are a few technologies I've been working with recently:
+            Drawn to the innovative possibilities of software, I’ve embraced programming, agile methodologies, and cutting-edge practices to tackle complex challenges. </p>
+            <p>
+            Here are some technologies I’ve been working with recently:
             </p>
           </motion.div>
         </AboutText>
